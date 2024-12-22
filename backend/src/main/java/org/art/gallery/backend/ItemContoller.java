@@ -11,7 +11,7 @@ public class ItemContoller {
 
     @GetMapping("/api/items")
     public List<String> getItems(){
-        System.out.println("get api");
+
         List<String> items = new ArrayList<>();
         items.add("a");
         items.add("b");

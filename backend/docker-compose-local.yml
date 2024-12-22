@@ -1,0 +1,15 @@
+services:
+  mariaDB:
+    container_name: shopping-db
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    image: shopping-db
+    environment:
+      - MARIADB_DATABASE=shopping
+      - MARIADB_ROOT_PASSWORD=1234
+    volumes:
+      - ./database/config:/etc/mysql/conf.d
+      - ./database/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
