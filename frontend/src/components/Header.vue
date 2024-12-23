@@ -7,6 +7,9 @@
                         <h4>사이트맵</h4>
                         <ul class="list-unstyled">
                             <li><router-link to="/" class="text-white">메인 화면</router-link></li>
+                            <li v-if="$store.state.account.id">
+                                <router-link to="/orders" class="text-white">주문 내역</router-link>
+                            </li>
                             <li>
                                 <router-link to="/login" class="text-white"
                                     v-if="!$store.state.account.id">로그인</router-link>
@@ -28,7 +31,7 @@
                     </svg>
                     <strong>Gallery</strong>
                 </router-link>
-                <router-link to="/cart" class="cart btn">
+                <router-link to="/cart" class="cart btn" v-if="$store.state.account.id">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 </router-link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
@@ -44,14 +47,17 @@
 <script>
 import store from '@/scripts/store';
 import router from '@/scripts/router';
+import axios from 'axios';
 
 export default {
     name: 'Header',
     setup() {
         const logout = () => {
-            store.commit('setAccount', 0);
+            axios.post("/api/account/logout").then(() => {
+                store.commit('setAccount', 0);
+                router.push({ path: "/" });
+            })
 
-            router.push({ path: "/" });
         }
 
         return { logout };
@@ -60,6 +66,10 @@ export default {
 </script>
 
 <style scoped>
+header ul li a {
+    cursor: pointer;
+}
+
 header .navbar .cart {
     margin-left: auto;
     color: #fff;
