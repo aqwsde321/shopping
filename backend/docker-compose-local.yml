@@ -11,5 +11,9 @@ services:
     volumes:
       - ./database/config:/etc/mysql/conf.d
       - ./database/init:/docker-entrypoint-initdb.d
+      - shopping-db-data:/var/lib/mysql # 데이터 영속성을 위한 볼륨
     ports:
-      - "3306:3306"
+      - "3307:3306"
+
+volumes:
+  shopping-db-data:
