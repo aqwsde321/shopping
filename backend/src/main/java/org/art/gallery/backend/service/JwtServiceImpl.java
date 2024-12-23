@@ -19,7 +19,7 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public String getToken(String key, Object value) {
         Date expTime = new Date();
-        expTime.setTime(expTime.getTime() + (1000 * 60 * 5));
+        expTime.setTime(expTime.getTime() + (1000 * 60 * 30));
 
         //byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(singKey);
         byte[] secretKeyBytes = Base64.getDecoder().decode(secretKey);
@@ -57,5 +57,20 @@ public class JwtServiceImpl implements JwtService {
 
         return null;
 
+    }
+
+    @Override
+    public boolean isValid(String token) {
+        return this.getClaims(token) != null;
+    }
+
+    @Override
+    public int getId(String token) {
+        Claims claims = this.getClaims(token);
+
+        if(claims != null) {
+            return Integer.parseInt(claims.get("id").toString());
+        }
+        return 0;
     }
 }

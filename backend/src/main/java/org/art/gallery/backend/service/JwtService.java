@@ -7,4 +7,8 @@ public interface JwtService {
 
     Claims getClaims(String token);
 
+    boolean isValid(String token);
+
+    int getId(String token);
+
 }

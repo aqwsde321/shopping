@@ -32,7 +32,7 @@ public class AccountContoller {
     public ResponseEntity login(@RequestBody Map<String, String> params,
                                 HttpServletResponse res) {
         Member member = memberRepository.findByEmailAndPassword(params.get("email"), params.get("password"));
-        System.out.println(member);
+
         if(member != null) {
 //            JwtService jwtService = new JwtServiceImpl();
             int id = member.getId();

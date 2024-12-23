@@ -15,3 +15,10 @@ CREATE TABLE IF NOT EXISTS shopping.members (
     password VARCHAR(100) NOT NULL,
     CONSTRAINT email UNIQUE (email)
     );
+
+CREATE TABLE IF NOT EXISTS shopping.carts
+(
+    id        int auto_increment primary key,
+    member_id int not null,
+    item_id   int not null
+);
