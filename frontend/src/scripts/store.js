@@ -13,7 +13,6 @@ const store = createStore({
     mutations: {
         setAccount(state, payload) {
             state.account.id = payload;
-            console.log("state.account.id", state.account.id);
         }
     }
 })

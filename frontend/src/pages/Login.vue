@@ -43,11 +43,9 @@ export default {
         })
 
         const submit = () => {
-            console.log("submit")
+
             axios.post("/api/account/login", state.form).then((res) => {
-                console.log(res.data)
                 store.commit('setAccount', res.data);
-                sessionStorage.setItem("id", res.data);
                 router.push({ path: "/" });
             }).catch(() => {
                 alert("로그인 정보가 존재하지 않습니다.")
