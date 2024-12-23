@@ -8,9 +8,9 @@
                 <span class="discount badge bg-danger">{{ item.discountPer }}%</span>
             </p>
             <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <button class="btn btn-primary">구입하기</button>
-                </div>
+                <button class="btn btn-primary" @click="addToCart(item.id)">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                </button>
                 <small class="price text-body-secondary">{{ lib.getNumberFormatted(item.price) }}원</small>
 
                 <small class="real text-body-secondary">{{ lib.getNumberFormatted(item.price - (item.price *
@@ -23,6 +23,7 @@
 
 <script>
 import lib from '@/scripts/lib';
+import axios from 'axios';
 
 export default {
     name: "Card",
@@ -30,7 +31,14 @@ export default {
         item: Object,
     },
     setup() {
-        return { lib }
+        const addToCart = (itemId) => {
+            console.log("addToCart", itemId);
+
+            axios.post(`/api/cart/items/${itemId}`).then((res) => {
+                console.log("success");
+            })
+        }
+        return { lib, addToCart }
     }
 }
 </script>
