@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import lib from '../scripts/lib';
+import lib from '@/scripts/lib';
 
 export default {
     name: "Card",
