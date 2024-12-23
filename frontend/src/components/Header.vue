@@ -7,6 +7,9 @@
                         <h4>사이트맵</h4>
                         <ul class="list-unstyled">
                             <li><router-link to="/" class="text-white">메인 화면</router-link></li>
+                            <li v-if="$store.state.account.id">
+                                <router-link to="/orders" class="text-white">주문 내역</router-link>
+                            </li>
                             <li>
                                 <router-link to="/login" class="text-white"
                                     v-if="!$store.state.account.id">로그인</router-link>
