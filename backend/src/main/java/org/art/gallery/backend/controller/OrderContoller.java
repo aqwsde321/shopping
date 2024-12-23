@@ -61,7 +61,7 @@ public class OrderContoller {
         newOrder.setItems(dto.getItems());
 
         orderRepository.save(newOrder);
-       // cartRepository.deleteByMemberId(memberId);
+        cartRepository.deleteByMemberId(memberId);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
